@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Neo Volt') }}</title>
 
   <!-- Fonts -->
   {{-- <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,6 +15,7 @@
 
   <!-- Favicon icon-->
   <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="icon" type="image/png" href="{{asset('build/assets/images/logos/logo-white.png')}}" class="rounded-full">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />

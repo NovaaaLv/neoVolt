@@ -20,7 +20,8 @@
     {{-- Main --}}
     <div class="col-span-4 grid grid-cols-4 gap-5 mt-5">
       @foreach ($pemakaians as $pemakaian)
-      <div class="shadow-primary bg-white p-2 rounded-lg col-span-2 h-[100px] cursor-pointer relative">
+      <a href="{{route('petugas.detail-pembayaran',['id' => $pemakaian->id])}}"
+        class="shadow-primary bg-white p-2 rounded-lg col-span-2 h-[100px] cursor-pointer relative">
         <div class="w-full h-full flex flex-col justify-between">
           <div>
             <button class="px-4 text-sm font-medium text-white rounded-md 
@@ -36,7 +37,7 @@
         <div class="absolute top-5 right-5">
           <p class="text-xs font-semibold text-slate-700">{{ $pemakaian->bulan_angka }} / {{ $pemakaian->tahun }}</p>
         </div>
-      </div>
+      </a>
       @endforeach
     </div>
   </section>

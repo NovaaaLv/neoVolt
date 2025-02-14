@@ -16,6 +16,7 @@
 
         <x-ui.sidebar.item route="admin.dashboard" icon="ti-layout-dashboard" title="Dashboard" />
         <x-ui.sidebar.item route="admin.dashboard-add-petugas" icon="ti-user-plus" title="Tambah petugas" />
+        <x-ui.sidebar.item route="admin.dashboard-add-petugas" icon="ti-bolt" title="Tambah Tarif" />
 
         <x-ui.sidebar.header title="petugas" />
 
