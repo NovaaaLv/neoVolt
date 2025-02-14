@@ -1,0 +1,1 @@
+<input type="text" name="" id="" class=" rounded-[6px] h-[30px] mt-1 w-full bg-transparent text-sm">
