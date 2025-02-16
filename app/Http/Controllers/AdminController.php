@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tarif;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,5 +26,22 @@ class AdminController extends Controller
     ]);
 
     return redirect()->route('admin.dashboard-add-petugas')->with('success', 'Petugas berhasil ditambahkan!');
+  }
+
+  public function AddTarif(Request $request)
+  {
+    $request->validate([
+      'jenis_plg' => 'required|string|max:255',
+      'biaya_beban' => 'required|numeric',
+      'tarif_kwh' => 'required|numeric',
+    ]);
+
+    Tarif::create([
+      'jenis_plg' => $request->jenis_plg,
+      'biaya_beban' => $request->biaya_beban,
+      'tarif_kwh' => $request->tarif_kwh
+    ]);
+
+    return redirect()->route('admin.dashboard-add-tarif')->with('success', 'Tarif berhasil ditambahkan!');
   }
 }

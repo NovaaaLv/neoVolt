@@ -1,6 +1,4 @@
 <x-app-layout>
-  <x-ui.content.header title="Dashboard / Pembayaran Pelanggan / Detail" username="Ade Nova W" />
-
   <section class="w-full grid grid-cols-8 gap-2">
 
     {{-- Main --}}
@@ -63,16 +61,17 @@
     </div>
 
     {{-- button --}}
-
-    <form action="" class=" col-span-8 flex items-center justify-end gap-5">
-      <button
+    @if ($pemakaian->status != "Lunas")
+    <form action="{{ route('petugas.update-pembayaran', $pemakaian->id) }}" method="POST"
+      class="col-span-8 flex items-center justify-end gap-5">
+      @csrf
+      @method('PUT')
+      <button type="submit"
         class="col-span-2 px-5 py-2 rounded-lg hover:text-teal-700 border-teal-700 border bg-teal-700 transition-3s text-white hover:bg-transparent">
         Konfirmasi Pembayaran
       </button>
-      <button
-        class="col-span-2 px-5 py-2 rounded-lg bg-red-700 text-white transition-3s hover:bg-transparent hover:text-red-700 border border-red-700">
-        Batal
-      </button>
     </form>
+    @endif
+
   </section>
 </x-app-layout>

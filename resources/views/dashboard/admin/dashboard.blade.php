@@ -1,5 +1,4 @@
 <x-app-layout>
-  <x-ui.content.header title="Dashboard" username="Ade Nova W" />
   <section class="grid grid-cols-3 gap-5">
     <div class="flex items-center justify-center w-full h-24 col-span-1 gap-5 p-3 bg-white rounded-lg shadow-primary">
       <div class="w-[40px] h-[40px] opacity-90">

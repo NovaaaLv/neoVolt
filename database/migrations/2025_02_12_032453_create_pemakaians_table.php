@@ -17,10 +17,10 @@ return new class extends Migration
       $table->integer('tahun');
       $table->enum('bulan', ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
       $table->integer('meter_awal');
-      $table->integer('meter_akhir');
-      $table->integer('jumlah_pakai');
+      $table->integer('meter_akhir')->nullable();
+      $table->integer('jumlah_pakai')->nullable();
+      $table->integer('biaya_pemakaian')->nullable();
       $table->integer('biaya_beban_pemakaian');
-      $table->integer('biaya_pemakaian');
       $table->enum('status', ['Belum Bayar', 'Lunas'])->default('Belum Bayar');
       $table->timestamps();
     });

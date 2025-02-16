@@ -14,4 +14,8 @@ class DashboardController extends Controller
   {
     return view('dashboard.admin.tambah-petugas');
   }
+  public function viewAddTarif()
+  {
+    return view('dashboard.admin.tambah-tarif');
+  }
 }

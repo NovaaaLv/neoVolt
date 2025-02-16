@@ -16,9 +16,10 @@ return new class extends Migration
       $table->integer('no_kontrol')->unique();
       $table->string('nama');
       $table->text('alamat');
-      $table->string('no_telp');
+      $table->string('no_telp')->nullable();
 
-      $table->foreignId('tarif_id')->constrained('tarifs')->cascadeOnDelete();
+      $table->foreignId('tarif_id')->nullable()->constrained('tarifs')->nullOnDelete();
+
 
       $table->timestamps();
     });

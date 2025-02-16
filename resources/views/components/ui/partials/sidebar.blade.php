@@ -12,21 +12,33 @@
   <div class="overflow-y-auto scrollbar-none h-4/5" data-simplebar="">
     <nav class="flex flex-col w-full pr-5 mt-5 sidebar-nav">
       <ul id="sidebarnav" class="text-sm text-gray-600">
-        <x-ui.sidebar.header title="home" />
 
+        <!-- Jika role admin -->
+        @if(auth()->user()->role === 'admin')
+        <x-ui.sidebar.header title="home" />
         <x-ui.sidebar.item route="admin.dashboard" icon="ti-layout-dashboard" title="Dashboard" />
         <x-ui.sidebar.item route="admin.dashboard-add-petugas" icon="ti-user-plus" title="Tambah petugas" />
-        <x-ui.sidebar.item route="admin.dashboard-add-petugas" icon="ti-bolt" title="Tambah Tarif" />
+        <x-ui.sidebar.item route="admin.dashboard-add-tarif" icon="ti-bolt" title="Tambah Tarif" />
 
         <x-ui.sidebar.header title="petugas" />
-
         <x-ui.sidebar.item route="petugas.pembayaran" icon="ti-wallet" title="transaksi pelanggan" />
 
         <x-ui.sidebar.header title="petugas lapangan" />
-
         <x-ui.sidebar.item route="petugas-lapangan.daftar-pelanggan" icon="ti-notebook" title="daftar pelanggan" />
+        @endif
+
+        <!-- Jika role petugas -->
+        @if(auth()->user()->role === 'petugas')
+        <x-ui.sidebar.header title="petugas" />
+        <x-ui.sidebar.item route="petugas.pembayaran" icon="ti-wallet" title="transaksi pelanggan" />
+        @endif
+
+        <!-- Jika role petugas lapangan -->
+        @if(auth()->user()->role === 'petugas_lapangan')
+        <x-ui.sidebar.header title="petugas lapangan" />
+        <x-ui.sidebar.item route="petugas-lapangan.daftar-pelanggan" icon="ti-notebook" title="daftar pelanggan" />
+        @endif
       </ul>
     </nav>
   </div>
-  <!-- </aside> -->
 </aside>

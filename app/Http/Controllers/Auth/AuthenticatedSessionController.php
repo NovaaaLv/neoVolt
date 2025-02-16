@@ -34,10 +34,9 @@ class AuthenticatedSessionController extends Controller
       return
         redirect()->intended(route('petugas.pembayaran'));
     } else if ($request->user()->role === "petugas_lapangan") {
-      redirect()->intended(route('petugas-lapangan.daftar-pelanggan'));
+      return
+        redirect()->intended(route('petugas-lapangan.daftar-pelanggan'));
     }
-
-    return redirect()->intended(route('dashboard'));
   }
 
   /**

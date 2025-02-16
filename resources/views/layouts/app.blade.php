@@ -31,6 +31,7 @@
       <!-- Main Content -->
       <main class="h-full max-w-full">
         <div class="container flex flex-col gap-6 p-0 full-container">
+          <x-ui.content.header title="Dashboard / Daftar Pelanggan " username="{{Auth::user()->name}}" />
           {{ $slot }}
         </div>
       </main>

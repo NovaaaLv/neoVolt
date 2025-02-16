@@ -1,44 +1,43 @@
 <x-app-layout>
-  <x-ui.content.header title="Dashboard / Pembayaran Pelanggan" username="Ade Nova W" />
-
-  <section class="w-full grid grid-cols-4 gap-2">
-    {{-- Search No Kontrol --}}
-    <form action="{{ route('petugas.pembayaran') }}" method="GET" class="col-span-8 grid grid-cols-6 gap-2">
-      <div class="col-span-2 w-full bg-white shadow-primary rounded-lg overflow-hidden flex gap-2 items-center">
-        <div class="w-full h-full">
-          <input type="text" name="search" placeholder="search"
-            class="w-full h-full border-none focus:outline-none focus:ring-0">
-        </div>
-        <i class="ti ti-search text-xl px-4"></i>
+  <section class="grid w-full grid-cols-4 gap-2">
+    {{-- Form Pencarian --}}
+    <form action="{{ route('petugas.pembayaran-search') }}" method="GET" class="grid grid-cols-6 col-span-8 gap-2">
+      <div class="flex items-center w-full col-span-2 gap-2 overflow-hidden bg-white rounded-lg shadow-primary">
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="Masukkan No Kontrol"
+          class="w-full h-full px-4 py-2 border-none focus:outline-none focus:ring-0">
+        <button type="submit"
+          class="px-4 py-2 text-white bg-teal-700 border border-teal-700 rounded-lg hover:bg-transparent hover:text-teal-700 transition-3s">
+          Proses
+        </button>
       </div>
-      <button type="submit"
-        class="col-span-1 w-full shadow-primary rounded-lg py-2 bg-gray-500 text-white border border-gray-500 hover:font-bold transition-3s hover:bg-white hover:text-gray-700">
-        Proses
-      </button>
     </form>
 
-    {{-- Main --}}
-    <div class="col-span-4 grid grid-cols-4 gap-5 mt-5">
+    {{-- Menampilkan Hasil Pencarian --}}
+    <div class="grid grid-cols-4 col-span-4 gap-5 mt-5">
+      @if($pemakaians->isEmpty())
+      <p class="text-gray-500 col-span-4">Data tidak ditemukan.</p>
+      @else
       @foreach ($pemakaians as $pemakaian)
-      <a href="{{route('petugas.detail-pembayaran',['id' => $pemakaian->id])}}"
+      <a href="{{ route('petugas.detail-pembayaran', $pemakaian->id) }}"
         class="shadow-primary bg-white p-2 rounded-lg col-span-2 h-[100px] cursor-pointer relative">
-        <div class="w-full h-full flex flex-col justify-between">
+        <div class="flex flex-col justify-between w-full h-full">
           <div>
             <button class="px-4 text-sm font-medium text-white rounded-md 
-              {{ $pemakaian->status === 'Lunas' ? 'bg-teal-700' : 'bg-red-700' }}">
+                {{ $pemakaian->status === 'Lunas' ? 'bg-teal-700' : 'bg-red-700' }}">
               {{ $pemakaian->status ?? 'Belum ada status' }}
             </button>
           </div>
           <div class="w-full">
-            <x-ui.content.form.lable title="{{ $pemakaian->pelanggan->no_kontrol ?? 'Tanpa Kontrol' }}" />
-            <x-ui.content.form.text-placeholder value="{{ $pemakaian->pelanggan->nama ?? 'Tanpa Nama' }}" />
+            <p class="font-bold">{{ $pemakaian->pelanggan->no_kontrol ?? 'Tanpa Kontrol' }}</p>
+            <p class="text-sm text-gray-600">{{ $pemakaian->pelanggan->nama ?? 'Tanpa Nama' }}</p>
           </div>
         </div>
         <div class="absolute top-5 right-5">
-          <p class="text-xs font-semibold text-slate-700">{{ $pemakaian->bulan_angka }} / {{ $pemakaian->tahun }}</p>
+          <p class="text-xs font-semibold text-slate-700">{{ $pemakaian->bulan }} / {{ $pemakaian->tahun }}</p>
         </div>
       </a>
       @endforeach
+      @endif
     </div>
   </section>
 </x-app-layout>
