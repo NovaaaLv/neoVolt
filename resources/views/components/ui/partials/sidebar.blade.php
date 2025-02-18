@@ -17,8 +17,8 @@
         @if(auth()->user()->role === 'admin')
         <x-ui.sidebar.header title="home" />
         <x-ui.sidebar.item route="admin.dashboard" icon="ti-layout-dashboard" title="Dashboard" />
-        <x-ui.sidebar.item route="admin.dashboard-add-petugas" icon="ti-user-plus" title="Tambah petugas" />
-        <x-ui.sidebar.item route="admin.dashboard-add-tarif" icon="ti-bolt" title="Tambah Tarif" />
+        <x-ui.sidebar.item route="admin.dashboard-daftar-petugas" icon="ti-user" title="Daftar petugas" />
+        <x-ui.sidebar.item route="admin.dashboard-daftar-tarif" icon="ti-bolt" title="Daftar Tarif" />
 
         <x-ui.sidebar.header title="petugas" />
         <x-ui.sidebar.item route="petugas.pembayaran" icon="ti-wallet" title="transaksi pelanggan" />

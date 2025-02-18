@@ -9,8 +9,9 @@ class PelangganController extends Controller
 {
   public function index()
   {
+    $search = null;
     $pelanggan = Pelanggan::get()->all();
-    return view('dashboard.pelanggan.pelanggan', compact('pelanggan'));
+    return view('dashboard.pelanggan.pelanggan', compact(['pelanggan', 'search']));
   }
   public function search(Request $request)
   {
@@ -21,9 +22,15 @@ class PelangganController extends Controller
     }
 
     $pelanggan = Pelanggan::where('no_kontrol', 'like', "%{$search}%")
-      ->orWhere('nama', 'like', "%{$search}%")
       ->get();
 
     return view('dashboard.pelanggan.pelanggan', compact('pelanggan', 'search'));
+  }
+
+  public function viewAllDaftarPemakaianPelanggan($id)
+  {
+    $pelanggan = Pelanggan::with('pemakaians')->findOrFail($id);
+
+    return view('dashboard.pelanggan.pelanggan-all-pemakaian', compact('pelanggan'));
   }
 }

@@ -86,7 +86,7 @@ class PetugasLapanganController extends Controller
 
     $biaya_beban_pemakaian = $pelanggan->tarif->biaya_beban;
     $tarifKwh = $pelanggan->tarif->tarif_kwh;
-    $jumlah_pakai = $request->meter_awal - $request->meter_akhir;
+    $jumlah_pakai = $request->meter_akhir - $request->awal;
     $biaya_pemakaian = intval($jumlah_pakai * $tarifKwh);
 
     // Debug: Cek nilai sebelum insert
@@ -104,7 +104,7 @@ class PetugasLapanganController extends Controller
     $pemakaian->status = 'Belum Bayar';
     $pemakaian->save();
 
-    return redirect(route('petugas-lapangan.tambah-pemakaian.success'));
+    return redirect()->route('petugas-lapangan.tambah-pemakaian.success', ['id' => $pelanggan->id]);
   }
 
 

@@ -22,13 +22,13 @@
         class="shadow-primary bg-white p-2 rounded-lg col-span-2 h-[100px] cursor-pointer relative">
         <div class="flex flex-col justify-between w-full h-full">
           <div>
-            <button class="px-4 text-sm font-medium text-white rounded-md 
-                {{ $pemakaian->status === 'Lunas' ? 'bg-teal-700' : 'bg-red-700' }}">
+            <button class=" text-sm font-medium rounded-md 
+                {{ $pemakaian->status === 'Lunas' ? 'text-teal-700' : 'text-red-700' }}">
               {{ $pemakaian->status ?? 'Belum ada status' }}
             </button>
           </div>
           <div class="w-full">
-            <p class="font-bold">{{ $pemakaian->pelanggan->no_kontrol ?? 'Tanpa Kontrol' }}</p>
+            <p class="font-bold text-slate-700">{{ $pemakaian->pelanggan->no_kontrol ?? 'Tanpa Kontrol' }}</p>
             <p class="text-sm text-gray-600">{{ $pemakaian->pelanggan->nama ?? 'Tanpa Nama' }}</p>
           </div>
         </div>

@@ -30,8 +30,8 @@ class PelangganSeeder extends Seeder
     // DB::table('pelanggans')->insert($pelanggans);
 
     Pelanggan::create([
-      'no_kontrol' => 112233445,
-      'nama' => 'Neuron Jade',
+      'no_kontrol' => 12398751,
+      'nama' => 'Fabian Jade',
       'alamat' => 'Jln Soeharto jakarta jawabarat',
       'no_telp' => null,
       'tarif_id' => null,

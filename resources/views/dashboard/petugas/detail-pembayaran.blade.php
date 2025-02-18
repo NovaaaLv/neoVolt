@@ -53,10 +53,10 @@
       </x-ui.content.form.wrapper>
 
       <div class="absolute top-5 right-5">
-        <button class="px-4 py-2 text-sm font-medium text-white rounded-md 
-                      {{ $pemakaian->status === 'Lunas' ? 'bg-teal-700' : 'bg-red-700' }}">
+        <p class="px-4 py-2 text-sm font-medium  
+                      {{ $pemakaian->status === 'Lunas' ? 'text-teal-700' : 'teal-red-700' }}">
           {{ $pemakaian->status ?? 'Belum ada status' }}
-        </button>
+        </p>
       </div>
     </div>
 
