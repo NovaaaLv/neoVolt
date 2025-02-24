@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use App\Models\Pemakaian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PetugasController extends Controller
 {
@@ -21,8 +22,9 @@ class PetugasController extends Controller
     if (!$pemakaian) {
       return redirect()->route('petugas.dashboard')->with('error', 'Data tidak ditemukan');
     }
+    $bulanText = Carbon::createFromFormat('m', $pemakaian->bulan)->locale('id')->translatedFormat('F');
 
-    return view('dashboard.petugas.detail-pembayaran', compact('pemakaian'));
+    return view('dashboard.petugas.detail-pembayaran', compact('pemakaian', 'bulanText'));
   }
 
 

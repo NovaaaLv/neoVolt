@@ -45,7 +45,7 @@
 
       <div class="flex items-end">
         <button id="update-button" type="submit"
-          class="px-4 py-1 text-white bg-teal-700 border border-teal-700 rounded-lg transition-3s hover:bg-transparent hover:text-teal-700 hidden">
+          class="hidden px-4 py-1 text-white bg-teal-700 border border-teal-700 rounded-lg transition-3s hover:bg-transparent hover:text-teal-700">
           Update
         </button>
       </div>
@@ -89,9 +89,9 @@
             class="w-full px-4 py-2 mt-1 text-sm border rounded-lg border-slate-400 focus:outline-none">
             <option value="">-- Pilih --</option>
             @foreach ([
-            'January' => 'January', 'February' => 'February', 'March' => 'March', 'April' => 'April',
-            'May' => 'May', 'June' => 'June', 'July' => 'July', 'August' => 'August',
-            'September' => 'September', 'October' => 'October', 'November' => 'November', 'December' => 'December'
+            '1' => 'January', '2' => 'February', '3' => 'March', '4' => 'April',
+            '5' => 'May', '6' => 'June', '7' => 'July', '8' => 'August',
+            '9' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
             ] as $value => $month)
             <option value="{{ $value }}">{{ $month }}</option>
             @endforeach
@@ -138,5 +138,31 @@
   
           noTelpInput.addEventListener("input", checkChanges);
           tarifSelect.addEventListener("change", checkChanges);
+
+
+          const bulanSelect = document.querySelector('select[name="bulan"]');
+          const tahunSelect = document.querySelector('select[name="tahun"]');
+          const meterAwalInput = document.getElementById("meter_awal");
+          
+          bulanSelect.addEventListener("change", async function () {
+          const bulan = this.value;
+          const tahun = tahunSelect.value;
+          const pelangganId = "{{ $pelanggan->id }}";
+          
+          if (!bulan || !tahun) return;
+          
+          try {
+          const response = await fetch(`/get-previous-usage/${pelangganId}/${tahun}/${bulan}`);
+          const data = await response.json();
+          
+          if (data.success) {
+          meterAwalInput.value = data.jumlah_pakai ?? 0;
+          } else {
+          meterAwalInput.value = 0;
+          }
+          } catch (error) {
+          console.error("Error fetching data:", error);
+          }
+          });
       });
 </script>

@@ -7,7 +7,7 @@
           class="w-full h-full px-4 py-2 border-none focus:outline-none focus:ring-0">
         <button type="submit"
           class="px-4 py-2 text-white bg-teal-700 border border-teal-700 rounded-lg hover:bg-transparent hover:text-teal-700 transition-3s">
-          Proses
+          Cari
         </button>
       </div>
     </form>
@@ -15,7 +15,7 @@
     {{-- Menampilkan Hasil Pencarian --}}
     <div class="grid grid-cols-4 col-span-4 gap-5 mt-5">
       @if($pemakaians->isEmpty())
-      <p class="text-gray-500 col-span-4">Data tidak ditemukan.</p>
+      <p class="col-span-4 text-gray-500">Data tidak ditemukan.</p>
       @else
       @foreach ($pemakaians as $pemakaian)
       <a href="{{ route('petugas.detail-pembayaran', $pemakaian->id) }}"

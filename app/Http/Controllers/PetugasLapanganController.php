@@ -67,12 +67,9 @@ class PetugasLapanganController extends Controller
 
   public function updatePemakaian(Request $request, $id)
   {
-    // Debugging: Cek data yang dikirim
-    // dd($request->all()); 
-
     $request->validate([
       'tahun' => 'numeric|required',
-      'bulan' => 'string|required', // Perbaikan: Sesuai dengan nama field di form
+      'bulan' => 'string|required',
       'meter_awal' => 'numeric|required',
       'meter_akhir' => 'numeric|required',
     ]);
@@ -84,19 +81,34 @@ class PetugasLapanganController extends Controller
       return back()->with('error', 'Data pelanggan atau tarif tidak ditemukan.');
     }
 
+    $bulanSebelumnya = $request->bulan - 1;
+    $tahunSebelumnya = $request->tahun;
+
+    if ($bulanSebelumnya == 0) {
+      $bulanSebelumnya = 12;
+      $tahunSebelumnya -= 1;
+    }
+
+    // Cek apakah ada data pemakaian sebelumnya
+    $pemakaianSebelumnya = Pemakaian::where('pelanggan_id', $id)
+      ->where('tahun', $tahunSebelumnya)
+      ->where('bulan', $bulanSebelumnya)
+      ->first();
+
+    // Jika ada, gunakan jumlah_pakai sebagai meter_awal
+    $meterAwal = $pemakaianSebelumnya ? $pemakaianSebelumnya->jumlah_pakai : 0;
+
+
     $biaya_beban_pemakaian = $pelanggan->tarif->biaya_beban;
     $tarifKwh = $pelanggan->tarif->tarif_kwh;
-    $jumlah_pakai = $request->meter_akhir - $request->awal;
+    $jumlah_pakai = $request->meter_akhir - $request->meter_awal;
     $biaya_pemakaian = intval($jumlah_pakai * $tarifKwh);
-
-    // Debug: Cek nilai sebelum insert
-    // dd($jumlah_pakai, $biaya_pemakaian);
 
     $pemakaian = new Pemakaian();
     $pemakaian->pelanggan_id = $id;
     $pemakaian->tahun = $request->tahun;
     $pemakaian->bulan = $request->bulan;
-    $pemakaian->meter_awal = $request->meter_awal;
+    $pemakaian->meter_awal = $meterAwal;
     $pemakaian->meter_akhir = $request->meter_akhir;
     $pemakaian->jumlah_pakai = $jumlah_pakai;
     $pemakaian->biaya_beban_pemakaian = $biaya_beban_pemakaian;

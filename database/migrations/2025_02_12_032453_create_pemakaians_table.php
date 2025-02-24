@@ -15,7 +15,7 @@ return new class extends Migration
       $table->id();
       $table->foreignId('pelanggan_id')->constrained('pelanggans')->onDelete('cascade');
       $table->integer('tahun');
-      $table->enum('bulan', ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+      $table->integer('bulan');
       $table->integer('meter_awal');
       $table->integer('meter_akhir')->nullable();
       $table->integer('jumlah_pakai')->nullable();

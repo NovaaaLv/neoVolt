@@ -8,7 +8,7 @@
           class="w-full h-full px-4 py-2 border-none focus:outline-none focus:ring-0">
         <button type="submit"
           class="px-4 py-2 text-white bg-teal-700 border border-teal-700 rounded-lg hover:bg-transparent hover:text-teal-700 transition-3s">
-          Proses
+          Cari
         </button>
       </div>
     </form>
